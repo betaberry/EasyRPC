@@ -1,10 +1,12 @@
 package com.github.yeecode.easyrpc.server.service;
 
 import com.alibaba.fastjson.JSON;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class UserService {
     public Integer getUserCount() {
         System.out.println("Method getUserCount called:");

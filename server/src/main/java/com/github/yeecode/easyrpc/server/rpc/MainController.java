@@ -1,6 +1,8 @@
 package com.github.yeecode.easyrpc.server.rpc;
 
 import com.alibaba.fastjson.JSON;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,6 +12,10 @@ import java.util.List;
 
 @RestController
 public class MainController {
+
+    @Autowired
+    ApplicationContext applicationContext;
+
     @RequestMapping("/")
     public Result rpcMain(String identifier, String methodName, String argTypes, String argValues) {
         try {
@@ -44,7 +50,11 @@ public class MainController {
             }
 
             // 这里相当于自己写了个bean容器
-            Object obj = ServiceGetter.getServiceByClazz(clazz);
+//            Object obj = ServiceGetter.getServiceByClazz(clazz);
+
+            // 改为从applicationContext里面拿
+            Object obj = applicationContext.getBean(clazz);
+
 
             if (obj == null) {
                 return Result.getFailResult("目标类的实例无法生成");
