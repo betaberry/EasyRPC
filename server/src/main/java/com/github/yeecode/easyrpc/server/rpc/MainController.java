@@ -43,7 +43,9 @@ public class MainController {
                 return Result.getFailResult("目标方法不存在");
             }
 
+            // 这里相当于自己写了个bean容器
             Object obj = ServiceGetter.getServiceByClazz(clazz);
+
             if (obj == null) {
                 return Result.getFailResult("目标类的实例无法生成");
             }

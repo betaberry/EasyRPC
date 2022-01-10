@@ -39,7 +39,6 @@ public class ServiceProxy<T> implements InvocationHandler {
             return JSON.parseObject(result.getResultValue(), Class.forName(result.getResultType()));
         } else {
             throw new Exception("远程调用异常：" + result.getMessage());
-
         }
     }
 }
